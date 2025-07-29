@@ -6,11 +6,10 @@ import AdminDashboard from "./AdminDashboard";
 
 const EmployeeDashboard = () => {
   return (
-    <div>
-      {/* <Header /> */}
-      {/* <TaskListNumbers /> */}
-      {/* <Tasklist /> */}
-      <AdminDashboard />
+    <div className="h-screen w-full p-7">
+      <Header />
+      <TaskListNumbers />
+      <Tasklist />
     </div>
   );
 };
