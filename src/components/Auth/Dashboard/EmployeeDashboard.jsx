@@ -4,12 +4,15 @@ import TaskListNumbers from "../../other/TaskListNumbers";
 import Tasklist from "../../TaskList/Tasklist";
 import AdminDashboard from "./AdminDashboard";
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = ({data}) => {
+  console.log(data);
+  
   return (
     <div className="h-screen w-full p-7">
-      <Header />
-      <TaskListNumbers />
-      <Tasklist />
+      {/* <h1>{data.id}</h1> */}
+      <Header data={data} />
+      <TaskListNumbers data={data} />
+      <Tasklist data={data} />
     </div>
   );
 };
