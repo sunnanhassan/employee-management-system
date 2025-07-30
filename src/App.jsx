@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import React, { useContext, useEffect, useState } from "react";
 import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Auth/Dashboard/EmployeeDashboard";
@@ -7,7 +9,7 @@ import { AuthContext } from "./components/context/AuthProvider";
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
-  const authData = useContext(AuthContext); // FIXED: no array destructuring
+  const authData = useContext(AuthContext);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
@@ -19,10 +21,21 @@ const App = () => {
   }, []);
 
   const handleLogin = (email, password) => {
-    if (email === "admin@me.com" && password === "123") {
-      setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-    } else if (authData?.employees) {
+    if (authData?.admin?.length) {
+      const adminUser = authData.admin.find(
+        (item) => item.admin.email === email && item.admin.password === password
+      );
+      if (adminUser) {
+        setUser("admin");
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({ role: "admin", data: adminUser.admin })
+        );
+        return;
+      }
+    }
+
+    if (authData?.employees?.length) {
       const employee = authData.employees.find(
         (e) => e.email === email && e.password === password
       );
@@ -33,12 +46,11 @@ const App = () => {
           "loggedInUser",
           JSON.stringify({ role: "employee", data: employee })
         );
-      } else {
-        alert("Invalid Credentials");
+        return;
       }
-    } else {
-      alert("Invalid Credentials");
     }
+
+    alert("Invalid Credentials");
   };
 
   return (

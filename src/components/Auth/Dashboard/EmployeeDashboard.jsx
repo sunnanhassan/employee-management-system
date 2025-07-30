@@ -9,7 +9,7 @@ const EmployeeDashboard = ({data}) => {
   
   return (
     <div className="h-screen w-full p-7">
-      {/* <h1>{data.id}</h1> */}
+      
       <Header data={data} />
       <TaskListNumbers data={data} />
       <Tasklist data={data} />
