@@ -5,7 +5,7 @@ import Tasklist from "../../TaskList/Tasklist";
 import AdminDashboard from "./AdminDashboard";
 
 const EmployeeDashboard = ({data}) => {
-  console.log(data);
+  // console.log(data);
   
   return (
     <div className="h-screen w-full p-7">

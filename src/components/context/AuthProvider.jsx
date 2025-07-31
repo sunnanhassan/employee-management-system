@@ -19,7 +19,9 @@ const AuthProvider = ({ children }) => {
   if (loading) return <div>Loading...</div>; // Optional loading UI
 
   return (
-    <AuthContext.Provider value={userData}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={userData}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
